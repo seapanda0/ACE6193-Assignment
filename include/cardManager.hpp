@@ -1,0 +1,4 @@
+#ifndef CARDMANAGER_HPP
+#define CARDMANAGER_HPP
+
+#endif
