@@ -12,11 +12,19 @@ private:
 
 public:
     Card() = default;
+<<<<<<< HEAD
     Card(std::string a_front, std::string a_back, int a_id);
 
     ~Card();
 
     int getID() const;
+=======
+    Card(std::string a_front, std::string a_back);
+
+    ~Card();
+
+    int getCardId();
+>>>>>>> 08cfaed (header declarations for Card and CardManager classes)
     void setCardFront(std::string a_front);
     void setCardBack(std::string a_back);
     std::string getCardFront();

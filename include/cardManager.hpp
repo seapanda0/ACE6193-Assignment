@@ -1,8 +1,8 @@
-#ifndef CARDMANAGER_HPP
-#define CARDMANAGER_HPP
-
 #include <vector>
 #include <string>
+
+#ifndef CARDMANAGER_HPP
+#define CARDMANAGER_HPP
 
 class Card;
 
