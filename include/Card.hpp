@@ -12,11 +12,11 @@ private:
 
 public:
     Card() = default;
-    Card(std::string a_front, std::string a_back);
+    Card(std::string a_front, std::string a_back, int a_id);
 
     ~Card();
 
-    int getCardId();
+    int getID() const;
     void setCardFront(std::string a_front);
     void setCardBack(std::string a_back);
     std::string getCardFront();
