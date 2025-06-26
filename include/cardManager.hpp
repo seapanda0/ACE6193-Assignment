@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 #include "Card.hpp"
 
@@ -21,8 +22,8 @@ public:
     // Initialize the object by passing the path to the database file
     CardManager(std::string a_path);
     void addCard(std::string a_front, std::string a_back);
-    void sortCardById();
     void removeCardById(int a_id);
+    void reassignIDs();
     void readCards();
     void writeCards();
     void closeFile();

@@ -19,6 +19,7 @@ public:
     ~Card() = default;
 
     int getCardId();
+    int getCardId() const;
     void setCardId(int a_id);
 
     void setCardFront(std::string a_front);

@@ -20,6 +20,11 @@ int Card::getCardId() {
     return id;
 };
 
+int Card::getCardId() const {
+    return id;
+};
+
+
 void Card::setCardId(int a_id) {
     id = a_id;
 };

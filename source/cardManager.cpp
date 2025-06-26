@@ -34,7 +34,7 @@ confidence -> int
 timestamp -> int64_t (unix timestamp in seconds)
 */
 void CardManager::readCards(){
-    cardFile.open(path);
+    cardFile.open(path, std::ios::in);
 
     if (!cardFile.is_open()) {
         std::cerr << "Error opening card file: " << path << std::endl;
@@ -67,8 +67,79 @@ void CardManager::readCards(){
         }
         // std::cout << line << std::endl;
     }
+    reassignIDs();
+
+    cardFile.close();
+
+}
+
+void CardManager::writeCards(){
+
+    reassignIDs();
+
+    cardFile.open(path, std::ios::out | std::ios::trunc);
+
+    if (!cardFile.is_open()) {
+        std::cerr << "Error opening card file: " << path << std::endl;
+        return;
+    }
 
 
+    for (Card temp_card : allCards){
+        cardFile << temp_card.getCardId() << DATABASE_DELIMTER
+                 << temp_card.getCardFront() << DATABASE_DELIMTER
+                 << temp_card.getCardBack() << DATABASE_DELIMTER
+                 << temp_card.isHidden() << DATABASE_DELIMTER
+                 << temp_card.getConfidence() << DATABASE_DELIMTER
+                 << temp_card.getTimeStamp() << std::endl;
+    }
+
+    cardFile.close();
+}
+
+void CardManager::addCard(std::string a_front, std::string a_back){
+
+    reassignIDs();
+
+    Card new_card;
+    new_card.setCardFront(a_front);
+    new_card.setCardBack(a_back);
+    new_card.setHidden(0);
+    new_card.setConfidence(0);
+    new_card.setTimeStamp(getCurrTimeStamp());
+
+    // Assign an ID to the card
+    if (allCards.empty()) {
+        new_card.setCardId(1); // Start IDs from 1
+    } else {
+        new_card.setCardId(allCards.back().getCardId() + 1); // Increment last ID
+    }
+
+    allCards.push_back(new_card);
+}
+
+void CardManager::removeCardById(int a_id){
+
+    size_t initialSize = allCards.size();
+
+    auto newEnd = std::remove_if(allCards.begin(), allCards.end(),
+        [a_id](const Card& card) { return card.getCardId() == a_id; });
+
+    allCards.erase(newEnd, allCards.end());
+
+    size_t newSize = allCards.size();
+    if (newSize == initialSize){
+        std::cerr << "Card with ID " << a_id << " not found." << std::endl;
+    } else {
+        std::cout << "Card with ID " << a_id << " removed successfully." << std::endl;
+    }
+    reassignIDs();
+}
+
+void CardManager::reassignIDs(){
+    for (int i = 0; i < allCards.size(); ++i) {
+        allCards[i].setCardId(i + 1); // IDs start from 1
+    }
 }
 
 void CardManager::closeFile(){
