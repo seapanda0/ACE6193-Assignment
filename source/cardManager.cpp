@@ -6,7 +6,8 @@
 void CardManager::addCard(std::string a_front, std::string a_back)
 {
     int newId = allCards.size() + 1;
-    allCards.push_back(Card());
+    //todo: check ID collision
+    allCards.push_back(Card(a_front, a_back, newId));
 }
 
 void CardManager::sortCardById()
