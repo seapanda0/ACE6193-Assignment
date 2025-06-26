@@ -1,12 +1,14 @@
 #include <iostream>
-#include "cardManager.hpp"
+#include <memory>
 
+#include "cardManager.hpp"
+#include "State.hpp"
 class CardManager;
 
 int main() {
 
-    CardManager cardManager("../database/bio.csv");
-    cardManager.readCards();
+    // CardManager cardManager("../database/bio.csv");
+    // cardManager.readCards();
 
     // cardManager.removeCardById(5);
 
@@ -14,7 +16,11 @@ int main() {
 
     // cardManager.addCard("Front Exam11ple", "Back Exam11ple");
     
-    cardManager.writeCards();
+    // cardManager.writeCards();
     // cardManager.closeFile();
+
+    Context app(std::make_unique<InitialState>());
+    app.request();
+
     return 0;
 }
