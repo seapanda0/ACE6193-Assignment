@@ -8,7 +8,9 @@ project(
 include_directories(include)
 
 add_library(cardManager source/cardManager.cpp)
+add_library(Card source/Card.cpp)
 
 add_executable(flashCard main.cpp)
 
 target_link_libraries(flashCard PRIVATE cardManager)
+target_link_libraries(flashCard PRIVATE Card)

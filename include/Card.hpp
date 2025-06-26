@@ -1,36 +1,40 @@
-#include <vector>
-#include <string>
-
 #ifndef CARD_HPP
 #define CARD_HPP
 
+#include <vector>
+#include <string>
+#include <chrono>
+
 class Card {
 private: 
-    std::string front, back;
     int id = -1;
-    bool hidden = false;
+    std::string front, back;
+    int hidden = 0;
+    int confidence = 0;
+    int64_t timeStamp = 0;
+    
 
 public:
     Card() = default;
-<<<<<<< HEAD
-    Card(std::string a_front, std::string a_back, int a_id);
-
-    ~Card();
-
-    int getID() const;
-=======
-    Card(std::string a_front, std::string a_back);
-
-    ~Card();
+    ~Card() = default;
 
     int getCardId();
->>>>>>> 08cfaed (header declarations for Card and CardManager classes)
+    void setCardId(int a_id);
+
     void setCardFront(std::string a_front);
     void setCardBack(std::string a_back);
+
     std::string getCardFront();
     std::string getCardBack();
-    bool isHidden();
-    void setHidden(bool a_hidden);
+
+    int isHidden();
+    void setHidden(int a_hidden);
+
+    void setConfidence(int a_confidence);
+    int getConfidence();
+
+    int64_t getTimeStamp();
+    void setTimeStamp(int64_t a_timeStamp);
     // void toggleHidden();
 };
 
