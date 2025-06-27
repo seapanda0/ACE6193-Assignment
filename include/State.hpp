@@ -11,8 +11,6 @@ class Context;
 
 class State
 {
-private:
-    Context *appContext;
 
 public:
     virtual ~State() = default;
