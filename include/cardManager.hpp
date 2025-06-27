@@ -27,6 +27,8 @@ public:
     void readCards();
     void writeCards();
     void closeFile();
+    const std::vector<Card>& getCards() const;
+    float computeAverageConfidence() const;
 };
 
 void writeTimeStamp();

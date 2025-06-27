@@ -7,7 +7,7 @@ class CardManager;
 
 int main() {
 
-    // CardManager cardManager("../database/bio.csv");
+    CardManager cardManager("../database/bio.csv");
     // cardManager.readCards();
 
     // cardManager.removeCardById(5);
@@ -19,7 +19,7 @@ int main() {
     // cardManager.writeCards();
     // cardManager.closeFile();
 
-    Context app(std::make_unique<InitialState>());
+    Context app(std::make_unique<InitialState>(), &cardManager);
     app.request();
 
     return 0;

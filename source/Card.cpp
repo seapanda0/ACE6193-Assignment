@@ -33,6 +33,14 @@ void Card::setConfidence(int a_confidence) {
     confidence = a_confidence;
 };
 
+void Card::incrementConfidence() {
+    confidence += 1;
+}
+
+void Card::decrementConfidence() {
+    confidence -= 1;
+}
+
 int Card::getConfidence() {
     return confidence;
 };

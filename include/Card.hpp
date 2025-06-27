@@ -32,6 +32,8 @@ public:
     void setHidden(int a_hidden);
 
     void setConfidence(int a_confidence);
+    void incrementConfidence();
+    void decrementConfidence();
     int getConfidence();
 
     int64_t getTimeStamp();
