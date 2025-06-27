@@ -25,8 +25,8 @@ public:
     void setCardFront(std::string a_front);
     void setCardBack(std::string a_back);
 
-    std::string getCardFront();
-    std::string getCardBack();
+    std::string getCardFront() const;
+    std::string getCardBack() const;
 
     int isHidden();
     void setHidden(int a_hidden);
@@ -34,7 +34,7 @@ public:
     void setConfidence(int a_confidence);
     void incrementConfidence();
     void decrementConfidence();
-    int getConfidence();
+    int getConfidence() const;
 
     int64_t getTimeStamp();
     void setTimeStamp(int64_t a_timeStamp);

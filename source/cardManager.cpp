@@ -170,7 +170,7 @@ void CardManager::closeFile()
     cardFile.close();
 }
 
-const std::vector<Card> &CardManager::getCards() const
+std::vector<Card> &CardManager::getCards()
 {
     return allCards;
 }

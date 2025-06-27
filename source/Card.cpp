@@ -8,11 +8,11 @@ void Card::setCardBack(std::string a_back) {
     back = a_back;
 };
 
-std::string Card::getCardFront() {
+std::string Card::getCardFront()const {
     return front;
 };
 
-std::string Card::getCardBack() {
+std::string Card::getCardBack() const {
     return back;
 };
 
@@ -41,7 +41,7 @@ void Card::decrementConfidence() {
     confidence -= 1;
 }
 
-int Card::getConfidence() {
+int Card::getConfidence() const{
     return confidence;
 };
 

@@ -58,6 +58,7 @@ void IdleState::handle(Context *context)
     {
         // Exit program
         std::cout << "Goodbye!\n";
+        context->cardManager->writeCards();
         context->exit();
     }
     else
@@ -76,14 +77,14 @@ void IdleState::handle(Context *context)
 void StudySessionState::handle(Context *context)
 {
     std::string input;
-    
+
     float threshold = context->cardManager->computeAverageConfidence();
-    auto allCards = context->cardManager->getCards();
-    for (Card temp_card : allCards)
+    std::vector<Card>& allCards = context->cardManager->getCards();
+    for (Card& temp_card : allCards)
     {
         if (temp_card.getConfidence() > threshold)
-        continue;
-        
+            continue;
+
         context->clearScreen();
 
         std::cout << "\n"
@@ -104,7 +105,7 @@ void StudySessionState::handle(Context *context)
 
             if (input == "1")
             {
-                temp_card.incrementConfidence();
+                temp_card.decrementConfidence();
                 break;
             }
             else if (input == "2")
@@ -114,7 +115,7 @@ void StudySessionState::handle(Context *context)
             }
             else if (input == "3")
             {
-                temp_card.decrementConfidence();
+                temp_card.incrementConfidence();
                 break;
             }
             else
@@ -130,6 +131,8 @@ void StudySessionState::handle(Context *context)
     std::cout << "Press Enter to go to main menu...";
     std::cin.ignore();
     std::cin.get();
+
+    context->cardManager->writeCards();
     context->setState(std::make_unique<IdleState>());
 }
 /*Study Session State end*/
@@ -152,6 +155,7 @@ void AddCardState::handle(Context *context)
     std::cout << "Press Enter to go to main menu...";
     std::cin.ignore();
     std::cin.get();
+    context->cardManager->writeCards();
     context->setState(std::make_unique<IdleState>());
 }
 /*Add Card State end*/
@@ -164,7 +168,7 @@ void DeleteCardState::handle(Context *context)
 
     std::cout << "\nDisplaying all cards...\n";
 
-    for (Card temp_card : allCards)
+    for (Card& temp_card : allCards)
     {
         std::cout << "\n"
                   << temp_card.getCardId() << ". ";
@@ -177,6 +181,7 @@ void DeleteCardState::handle(Context *context)
 
     int cardId = std::stoi(input);
     context->cardManager->removeCardById(cardId);
+    context->cardManager->writeCards();
     context->setState(std::make_unique<IdleState>());
 }
 /*Delete Card State end*/

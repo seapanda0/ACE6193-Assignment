@@ -27,7 +27,7 @@ public:
     void readCards();
     void writeCards();
     void closeFile();
-    const std::vector<Card>& getCards() const;
+    std::vector<Card>& getCards();
     float computeAverageConfidence() const;
 };
 
