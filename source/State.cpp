@@ -79,6 +79,7 @@ void StudySessionState::handle(Context *context)
     std::string input;
 
     float threshold = context->cardManager->computeAverageConfidence();
+
     std::vector<Card>& allCards = context->cardManager->getCards();
     for (Card& temp_card : allCards)
     {
@@ -86,10 +87,10 @@ void StudySessionState::handle(Context *context)
             continue;
 
         context->clearScreen();
-
-        std::cout << "\n"
+        std::cout << "ID: " <<temp_card.getCardId();
+        std::cout << "\n\n"
                   << temp_card.getCardFront();
-        std::cout << "\nPress Enter to show back of card...";
+        std::cout << "\n\nPress Enter to show back of card...";
         std::cin.ignore();
         std::cin.get();
         std::cout << "\n"
@@ -141,10 +142,14 @@ void StudySessionState::handle(Context *context)
 void AddCardState::handle(Context *context)
 {
     std::string input, input2;
+
+    std::cin.ignore();
+
     std::cout << "Please enter the front of the new card you want to create\n";
-    std::cin >> input;
+    std::getline(std::cin, input);
+
     std::cout << "Please enter the back of the new card you want to create\n";
-    std::cin >> input2;
+    std::getline(std::cin, input2);
 
     context->cardManager->addCard(input, input2);
 
