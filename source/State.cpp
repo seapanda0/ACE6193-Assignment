@@ -178,7 +178,7 @@ void DeleteCardState::handle(Context *context)
         std::cout << "\n"
                   << temp_card.getCardId() << ". ";
         std::cout << "front: " << temp_card.getCardFront();
-        std::cout << "back: " << temp_card.getCardBack();
+        std::cout << " back: " << temp_card.getCardBack();
     }
 
     std::cout << "\nInput the ID of the card you want to delete\n";
